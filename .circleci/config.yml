@@ -11,3 +11,12 @@ jobs:
       - run:
           name: Print the Current Time
           command: date
+machine:
+  node:
+    version: 6.11.5
+test:
+  override:
+    - npm test -- --coverage
+  post:
+    - npm install -g codeclimate-test-reporter
+    - codeclimate-test-reporter < coverage/lcov.info
